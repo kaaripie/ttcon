@@ -1,19 +1,19 @@
-  // ----------- парсинг json ---------------- //
+  // ----------- парсинг json, результат кладем в объект data ---------------- //
   let data;
 
   var source = $.getJSON( "/result.json", function() {
     console.log( "getJSON" );
   })
-    .done(function(imported) {
-      //console.log( "success" );
-      data = imported;
-    })
-    .fail(function() {
-      alert( "error" );
-    })
-    .always(function() {
-      //console.log( "complete" );
-    });
+      .done(function(imported) {
+        //console.log( "success" );
+        data = imported;
+      })
+      .fail(function() {
+        alert( "error" );
+      })
+      .always(function() {
+        //console.log( "complete" );
+      });
 // ----------
 
 function get_id(id, user_name) {
