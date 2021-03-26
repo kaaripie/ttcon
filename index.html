@@ -13,10 +13,10 @@ var source = $.getJSON( "/result.json", function() {
     console.log( "getJSON" );
   })
     .done(function() {
-      alert ( "success" );
+      console.log( "success" );
     })
     .fail(function() {
-      alert ( "error" );
+      alert( "error" );
     })
     .always(function() {
       console.log( "complete" );
