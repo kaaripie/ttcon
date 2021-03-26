@@ -18,11 +18,12 @@
 
 function get_id(id, user_name) {
   var _l_name = document.getElementById(user_name).value;
-    
+  console.log(_l_name)  
   //список имен моих контактов
   for ( var i = 0; i < data.frequent_contacts.list.length; i++ ) {
-    if ( _l_name == data.frequent_contacts.list[i].name ) {
+    if ( data.frequent_contacts.list[i].name == _l_name ) {
       alert( "ID пользователя: " + data.frequent_contacts.list[i].id );
+      break;
     } else {
       alert( "нет такого пользователя, скопируй полное имя из чата" );
     }
