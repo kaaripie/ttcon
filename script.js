@@ -57,7 +57,6 @@ function download_chat(id, file_path, user_name) {
 
 function download_file (chat_id) {
 
-  if ( _l_id ) {
     for ( var i = 0; i < data.chats.list.length; i++ ) {
       var _chat_history = data.chats.list[i];
       if ( _chat_history.id == _l_id && _chat_history.messages.length > 0 ) {
@@ -78,6 +77,5 @@ function download_file (chat_id) {
         break;
       }
     }
-  }
 }
 
