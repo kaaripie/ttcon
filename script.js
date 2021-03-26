@@ -43,7 +43,7 @@ function get_user_id(in_name) {
 function download_chat() {
   // выгрузить все сообщения в консоль
   var selectedFile = document.getElementById('inputFile').files[0];
-  var user_name = document.getElementById('add_fullname').Value;
+  var user_name = document.getElementById('add_fullname').value;
   var reader = new FileReader();
 
   reader.onload = function (e) {
