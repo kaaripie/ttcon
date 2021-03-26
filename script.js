@@ -46,9 +46,9 @@ function download_chat(id, user_name) {
 
   // выгрузить все сообщения в консоль
   if (_l_id)
-  var msgs = chats.list.id[_l_id].messages;
+  var msgs = data.chats.list.id[_l_id].messages;
 
-  for ( var i = 0; i < all_messages.length; i++ ) {
+  for ( var i = 0; i < msgs.length; i++ ) {
       var _l_item = msgs[i];
       console.log ( "[" + _l_item.date.replase("T", ", ") + "]" + _l_item.from + ": " +_l_item.text );
   }
