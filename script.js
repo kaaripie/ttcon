@@ -45,8 +45,6 @@ function download_chat(id, user_name) {
   var _l_id = get_user_id(_l_name);
 
   if ( _l_id ) {
-    var msgs = data.chats.list.id[_l_id].messages;
-
     for ( var i = 0; i < data.chats.list.length; i++ ) {
         var _chat_history = data.chats.list[i];
         if ( _chat_history.id == _l_id )
