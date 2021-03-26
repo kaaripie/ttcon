@@ -8,9 +8,11 @@
   <script src="script.js"></script>
 </head>
 <body>
-  <button onClick='count_messages("add_id", "add_fullname")' type="submit" >Получить информацию о чате с ...</button> <input type="text"  id="add_fullname">
-  <div>Если информация есть, чат можно конвертировать:</div><br><br>
-  <button onClick='download_chat("add_id", "add_fullname")' type="submit" >Конвертировать и загрузить чат</button>
-
+  <div class="row">
+    <button onClick='count_messages("add_id", "add_fullname")' type="submit" >Получить информацию о чате с ...</button> <input type="text"  id="add_fullname">
+    <div>Если информация есть, чат можно конвертировать:</div>
+    <br>
+    <button onClick='download_chat("add_id", "add_fullname")' type="submit" >Конвертировать и загрузить чат</button>
+  </div>
 </body>
 </html>
