@@ -51,7 +51,7 @@ function download_chat(id, file_path, user_name) {
   var _l_path = document.getElementById(file_path).value;
   var _l_name = document.getElementById(user_name).value;
  
-  data = get_data_from_file(_l_path, name);
+  data = get_data_from_file(_l_path, _l_name);
 }
 
 
