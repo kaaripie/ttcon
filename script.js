@@ -58,7 +58,7 @@ function download_chat(id, user_name) {
           var date = _l_item.date;
           result += "[" + date.split("T")[0] + ", " + date.split("T")[1] + "] " + _l_item.from + ": " +_l_item.text + "\r\n";
         } 
-        saveAs(result, "_chat.txt");
+        FileSaver.saveAs(result, "_chat.txt");
         break;
       }
     }
