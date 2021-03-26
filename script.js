@@ -55,11 +55,10 @@ function download_chat(id, user_name) {
 
   reader.onload = function (e) {
     var FileContent = e.target.result;
+    get_data_from_file(FileContent, user_name);
   };
 
   reader.readAsText(selectedFile);
-    
-  get_data_from_file(FileContent, user_name);
 }
 
 
