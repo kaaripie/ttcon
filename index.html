@@ -7,7 +7,14 @@
 </head>
 <body>
 
+<input type="text"  id="add_id_user">
+<button onClick='return add_del("add_id", "add_id_user")' type="submit" >submit</button>
+
 <script>
+  function ad_del(id, user_id) {
+     var input_val = document.getElementById(user_id).value;
+  }
+
 // ----------- рабочий парсинг списка контактов ---------------- //
 var source = $.getJSON( "/result.json", function() {
     console.log( "getJSON" );
