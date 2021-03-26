@@ -40,9 +40,10 @@ function get_user_id(in_name) {
   return null;
 }
 
-function download_chat(id, user_name) {
+function download_chat() {
   // выгрузить все сообщения в консоль
   var selectedFile = document.getElementById('inputFile').files[0];
+  var user_name = document.getElementById('add_fullname').Value;
   var reader = new FileReader();
 
   reader.onload = function (e) {
