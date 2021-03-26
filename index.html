@@ -11,9 +11,9 @@
 var jqxhr = $.getJSON( "/copy.json", function() {
   console.log( "success" );
 })
-  .done(function() {
+  .done(function(data) {
     console.log( "second success" );
-	console.log( jqxhr );
+	console.log( data.name );
   })
   .fail(function() {
     console.log( "error" );
