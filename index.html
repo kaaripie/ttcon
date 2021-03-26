@@ -31,9 +31,10 @@ source.done(function(data) {
         console.log( data.contacts.list[i].last_name + " " + data.contacts.list[i].last_name );
       }
       */
-      
-      console.log( data.chats.list["Елена"].messages.length );
-
+      for (var i = 0; i < data.chats.list.length; i++) {
+        if (data.chats.list[i].name == "Елена")
+          console.log( data.chats.list[i].messages.length );
+      }
 });
 </script>
  
