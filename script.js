@@ -15,9 +15,9 @@
 
 function get_user_id(in_name) {
   //список имен моих контактов
-  for ( var i = 0; i < data.frequent_contacts.list.length; i++ ) {
-    if ( data.frequent_contacts.list[i].name == in_name ) {
-      return data.frequent_contacts.list[i].id;
+  for ( var i = 0; i < data.frequent_contacts.chats.list.length; i++ ) {
+    if ( data.frequent_contacts.chats.list[i].name == in_name ) {
+      return data.frequent_contacts.chats.list[i].id;
     } else {
       alert( "нет такого пользователя" );
       return null;
