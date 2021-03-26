@@ -10,13 +10,10 @@
 <script>
 // ----------- рабочий парсинг списка контактов ---------------- //
 var source = $.getJSON( "/result.json", function() {
-    console.log( "getJSON success" );
+    console.log( "getJSON" );
   })
-    .done(function(data) {
-      console.log( "done" );
-      for (var i = 0; i < data.contacts.list.length; i++) {
-        console.log( data.contacts.list[i].last_name );
-      }
+    .done(function() {
+      alert ( "success" );
     })
     .fail(function() {
       alert ( "error" );
@@ -26,8 +23,11 @@ var source = $.getJSON( "/result.json", function() {
     });
 // ----------
   
-source.always(function(data) {
-  console.log( data.name );
+source.done(function(data) {
+      console.log( "done" );
+      for (var i = 0; i < data.contacts.list.length; i++) {
+        console.log( data.contacts.list[i].last_name );
+      }
 });
 </script>
  
