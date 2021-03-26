@@ -3,9 +3,9 @@ var data;
 var result;
 
 function get_data_from_file(file_src, name) {
-  console.log(file_src);
-  //id = get_user_id( name );
-  //if (id) download_file( id );
+  data = JSON.parse(file_src);
+  id = get_user_id( name );
+  if (id) download_file( id );
  
  /*
   var source = $.getJSON( file_src, function() { // "/result.json"
