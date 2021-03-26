@@ -58,22 +58,17 @@ function download_chat(id, user_name) {
           var date = _l_item.date;
           result += "[" + date.split("T")[0] + ", " + date.split("T")[1] + "] " + _l_item.from + ": " +_l_item.text + "\r\n";
         } 
-        FileSaver.saveAs(result, "_chat.txt");
+
+        var stroka = result;
+        var blob = new Blob([stroka], {type: "text/plain"});
+        var link = document.createElement("a");
+        link.setAttribute("href", URL.createObjectURL(blob));
+        link.setAttribute("download", "_chat.txt");
+        link.click();
+
         break;
       }
     }
   }
 }
 
-function data2blob(data, isBase64) {
-  var chars = "";
-  if (isBase64)
-      chars = atob(data);
-  else
-      chars = data;
-  var bytes = new Array(chars.length);
-  for (var i = 0; i < chars.length; i++)
-      bytes[i] = chars.charCodeAt(i);
-  var blob = new Blob([new Uint8Array(bytes)]);
-  return blob;
-}
