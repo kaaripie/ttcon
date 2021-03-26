@@ -1,16 +1,18 @@
   // ----------- парсинг json, результат кладем в объект data ---------------- //
-  var data = $.getJSON( "/result.json", function() {
+var data;
+var src = $.getJSON( "/result.json", function() {
     console.log( "getJSON" );
-  })
-      .done(function() {
-        //console.log( "success" );
-      })
-      .fail(function() {
-        alert( "error" );
-      })
-      .always(function() {
-        //console.log( "complete" );
-      });
+})
+    .done(function(json_obj) {
+      data = json_obj;
+      //console.log( "success" );
+    })
+    .fail(function() {
+      alert( "error" );
+    })
+    .always(function() {
+      //console.log( "complete" );
+    });
 // -----------------------------------------------------------------------------//
 
 function get_user_id(in_name) {
