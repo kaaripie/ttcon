@@ -1,10 +1,8 @@
-(function() {
-  var adduser_input=document.getElementById('add_id_user');
-  document.getElementById('formIdName').addEventListener('submit',call_add);
-  function call_add() {
-      return add_del(adduser_input.value);
-  }
-})();
+var input_val;
+
+function ad_del(id, user_id) {
+  input_val = document.getElementById(user_id).value;
+}
 
 function ad_del(id, user_id) {
   var _l_name = document.getElementById(user_id).value;
@@ -31,9 +29,9 @@ function ad_del(id, user_id) {
           console.log( data.contacts.list[i].last_name + " " + data.contacts.list[i].last_name );
         }
         */
-       
+
         for (var i = 0; i < data.chats.list.length; i++) {
-          if (data.chats.list[i].name == _l_name)
+          if (data.chats.list[i].name == input_val)
             console.log( data.chats.list[i].messages.length );
         }
   });
