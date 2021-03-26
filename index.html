@@ -8,26 +8,10 @@
 <body>
 
 <script>
-var jqxhr = $.getJSON( "/copy.json", function() {
-  console.log( "success" );
-})
-  .done(function(data) {
-    console.log( "second success" );
-	console.log( data.name );
-  })
-  .fail(function() {
-    console.log( "error" );
-  })
-  .always(function() {
-    console.log( "complete" );
-  });
+// -----------
+
  
-// Perform other work here ...
- 
-// Set another completion function for the request above
-jqxhr.always(function() {
-  console.log( "second complete" );
-});
+// ----------
 </script>
  
 </body>

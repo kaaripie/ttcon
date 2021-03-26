@@ -1,5 +1,13 @@
-// ES6/ES2015
-// app.js
-import * as data from '/copy.json';
-const word = data;
-console.log(word); // output 'testing'
+var source = $.getJSON( "/copy.json", function() {
+    console.log( "getJSON success" );
+  })
+    .done(function(data) {
+      console.log( "done" );
+      console.log( data.name );
+    })
+    .fail(function() {
+      alert ( "error" );
+    })
+    .always(function() {
+      console.log( "complete" );
+    });
