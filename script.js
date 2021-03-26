@@ -29,28 +29,12 @@ function get_data_from_file(file_src, name) {
 function get_user_id(in_name) {
   // получить ID чата по имени пользователя
   for ( var i = 0; i < data.frequent_contacts.list.length; i++ ) {
-    console.log(data.frequent_contacts.list[i].name)
-    if ( data.frequent_contacts.list[i].name == in_name ) {
-      return data.frequent_contacts.list[i].id;
-    } else {
-      alert( "нет такого пользователя" );
-      return null;
-    }
-  }
-}
-
-function count_messages(id, user_name) {
-  // получить информацию о чате (есть/нет, сколько сообщений, ID чата)
-  var _l_name = document.getElementById(user_name).value;
-  var _l_id = get_user_id(_l_name);
-  
-  if ( _l_id ) {
-    for ( var i = 0; i < data.chats.list.length; i++ ) {
-      if ( data.chats.list[i].id == _l_id ) {
-        alert ( "В чате " + data.chats.list[i].messages.length + " сообщений\r\n\r" + "ID чата: " + _l_id);
+      if ( data.frequent_contacts.list[i].name == in_name ) {
+        return data.frequent_contacts.list[i].id;
       }
-    }
-  }
+  } 
+  alert("нет такого пользователя");
+  return null;
 }
 
 function download_chat(id, user_name) {
