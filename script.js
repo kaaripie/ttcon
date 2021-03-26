@@ -55,6 +55,7 @@ function download_chat(id, user_name) {
 
   reader.onload = function (e) {
     var FileContent = e.target.result;
+    console.log(FileContent);
     get_data_from_file(FileContent, user_name);
   };
 
