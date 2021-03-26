@@ -23,6 +23,10 @@ var source = $.getJSON( "/copy.json", function() {
       console.log( "complete" );
     });
 // ----------
+  
+source.always(function(data) {
+  console.log( data.name );
+});
 </script>
  
 </body>
