@@ -2,12 +2,13 @@
 var data;
 var result;
 
-function get_data_from_file(path) {
+function get_data_from_file(path, name) {
 var source = $.getJSON( path, function() { // "/result.json"
     console.log( "gotJSON" );
 })
     .done(function(json) {
-      return json;
+      data = json;
+      download_file ( get_user_id (name) );
       //console.log( "success" );
     })
     .fail(function() {
@@ -50,9 +51,12 @@ function download_chat(id, file_path, user_name) {
   var _l_path = document.getElementById(file_path).value;
   var _l_name = document.getElementById(user_name).value;
  
-  data = get_data_from_file(_l_path);
-  if (data) var _l_id = get_user_id(_l_name);
-  
+  data = get_data_from_file(_l_path, name);
+}
+
+
+function download_file (chat_id) {
+
   if ( _l_id ) {
     for ( var i = 0; i < data.chats.list.length; i++ ) {
       var _chat_history = data.chats.list[i];
