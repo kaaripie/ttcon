@@ -2,13 +2,15 @@
 var data;
 var result;
 
-function get_data_from_file(path, name) {
-var source = $.getJSON( path, function() { // "/result.json"
+function get_data_from_file(file_src, name) {
+
+  var source = $.getJSON( file_src, function() { // "/result.json"
     console.log( "gotJSON" );
-})
+  })
     .done(function(json) {
       data = json;
-      download_file ( get_user_id (name) );
+      id = get_user_id( name );
+      if (id) download_file( id );
       //console.log( "success" );
     })
     .fail(function() {
@@ -46,12 +48,18 @@ function count_messages(id, user_name) {
   }
 }
 
-function download_chat(id, file_path, user_name) {
+function download_chat(id, user_name) {
   // выгрузить все сообщения в консоль
-  var _l_path = document.getElementById(file_path).value;
-  var _l_name = document.getElementById(user_name).value;
- 
-  data = get_data_from_file(_l_path, _l_name);
+  var selectedFile = document.getElementById('inputFile').files[0];
+  var reader = new FileReader();
+
+  reader.onload = function (e) {
+    var FileContent = e.target.result;
+  };
+
+  reader.readAsText(selectedFile);
+    
+  get_data_from_file(FileContent, user_name);
 }
 
 
