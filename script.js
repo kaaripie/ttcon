@@ -31,5 +31,5 @@ function ad_del(id, user_id) {
             console.log( data.chats.list[i].messages.length );
         }
   });
-
+  return true;
 }
