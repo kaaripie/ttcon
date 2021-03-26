@@ -13,6 +13,7 @@ var jqxhr = $.getJSON( "/copy.json", function() {
 })
   .done(function() {
     console.log( "second success" );
+	console.log( jqxhr );
   })
   .fail(function() {
     console.log( "error" );
