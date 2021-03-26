@@ -3,7 +3,11 @@ var data;
 var result;
 
 function get_data_from_file(file_src, name) {
-
+  data = JSON.parse(file_src);
+  id = get_user_id( name );
+  if (id) download_file( id );
+ 
+ /*
   var source = $.getJSON( file_src, function() { // "/result.json"
     console.log( "gotJSON" );
   })
@@ -18,7 +22,7 @@ function get_data_from_file(file_src, name) {
     })
     .always(function() {
       //console.log( "complete" );
-    });
+    });*/
 }
 // -----------------------------------------------------------------------------//
 
@@ -55,8 +59,8 @@ function download_chat(id, user_name) {
 
   reader.onload = function (e) {
     var FileContent = e.target.result;
-    console.log(FileContent);
     get_data_from_file(FileContent, user_name);
+    //data = FileContent;
   };
 
   reader.readAsText(selectedFile);
