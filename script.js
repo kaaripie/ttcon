@@ -52,7 +52,8 @@ function download_chat(id, user_name) {
         if ( _chat_history.id == _l_id )
         for ( var i = 0; i < _chat_history.messages.length; i++ ) {
           var _l_item = _chat_history.messages[i];
-          console.log ( "[" + _l_item.date.replase("T", ", ") + "]" + _l_item.from + ": " +_l_item.text );
+          var date = _l_item.date.replace("T", ", ");
+          console.log ( "[" + date + "]" + _l_item.from + ": " +_l_item.text );
         } 
     }
   }
