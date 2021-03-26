@@ -1,7 +1,7 @@
   // ----------- парсинг json, результат кладем в объект data ---------------- //
 var data;
 var source = $.getJSON( "/result.json", function() {
-    console.log( "getJSON" );
+    console.log( "gotJSON" );
 })
     .done(function(json) {
       data = json;
