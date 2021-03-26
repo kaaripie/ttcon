@@ -29,6 +29,7 @@ function get_data_from_file(file_src, name) {
 function get_user_id(in_name) {
   // получить ID чата по имени пользователя
   for ( var i = 0; i < data.frequent_contacts.list.length; i++ ) {
+    console.log(data.frequent_contacts.list[i].name)
     if ( data.frequent_contacts.list[i].name == in_name ) {
       return data.frequent_contacts.list[i].id;
     } else {
@@ -60,7 +61,6 @@ function download_chat(id, user_name) {
   reader.onload = function (e) {
     var FileContent = e.target.result;
     get_data_from_file(FileContent, user_name);
-    //data = FileContent;
   };
 
   reader.readAsText(selectedFile);
