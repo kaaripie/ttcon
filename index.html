@@ -10,14 +10,26 @@
 <body>
   <div class="row">
     <div class="col-sm-12 col-md-6">
-    <div class="thumbnail">
     <div class="caption">
-    <button onClick='count_messages("add_id", "add_fullname")' type="submit" >Получить информацию о чате с ...</button> <input type="text"  id="add_fullname">
+    <h4>Здесь можно конвертировать чат экспортированный из Telegram (JSON) в формат Watsap (TXT)</h4>
+    <br>
+    <div>Путь к файлу JSON:</div> 
+    <br>
+    <input type="text"  id="add_path"> 
+    <br>
+    <div>Имя собеседника, которое видишь в Telegram:</div>
+    </br>
+    <input type="text"  id="add_mindate"> 
+    <br>
+    <div>С какой даты импортировать (ДД-ММ-ГГГГ). Если с любой, оставь пустым:</div>
+    <br>
+     <input type="text"  id="add_date"> 
+    <br>
+    <button onClick='count_messages("add_id", "add_fullname")' type="submit" >Получить информацию о собеседнике</button>
     <div>Если информация есть, чат можно конвертировать:</div>
     <br>
-    <button onClick='download_chat("add_id", "add_fullname")' type="submit" >Конвертировать и загрузить чат</button>
+    <button onClick='download_chat("add_id", "add_path", "add_fullname")' type="submit" >Конвертировать и скачать</button>
   </div>
-</div>
 </div>
 </div>
 </body>

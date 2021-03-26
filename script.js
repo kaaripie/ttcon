@@ -2,7 +2,8 @@
 var data;
 var result;
 
-var source = $.getJSON( "/result.json", function() {
+function get_data_from_file(path) {
+var source = $.getJSON( path, function() { // "/result.json"
     console.log( "gotJSON" );
 })
     .done(function(json) {
@@ -15,6 +16,7 @@ var source = $.getJSON( "/result.json", function() {
     .always(function() {
       //console.log( "complete" );
     });
+}
 // -----------------------------------------------------------------------------//
 
 function get_user_id(in_name) {
@@ -43,10 +45,13 @@ function count_messages(id, user_name) {
   }
 }
 
-function download_chat(id, user_name) {
+function download_chat(id, file_path, user_name) {
   // выгрузить все сообщения в консоль
+  var _l_path = document.getElementById(file_path).value;
   var _l_name = document.getElementById(user_name).value;
+
   var _l_id = get_user_id(_l_name);
+  
 
   if ( _l_id ) {
     for ( var i = 0; i < data.chats.list.length; i++ ) {
