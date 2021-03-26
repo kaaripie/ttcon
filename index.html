@@ -14,7 +14,9 @@ var source = $.getJSON( "/copy.json", function() {
   })
     .done(function(data) {
       console.log( "done" );
-      console.log( data.name );
+      for (var i = 0; i < data.contacts.list.length; i++) {
+        console.log( data.contacts.list[i].last_name );
+      }
     })
     .fail(function() {
       alert ( "error" );
