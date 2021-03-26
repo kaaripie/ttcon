@@ -36,7 +36,7 @@ function count_messages(id, user_name) {
   if (_l_id)
   for ( var i = 0; i < data.chats.list.length; i++ ) {
     if ( data.chats.list[i].id == _l_id ) {
-      alert ( "В чате с " + _l_name + " " + data.chats.list[i].messages.length + "сообщений" );
+      alert ( "В этом чате\r\n" + data.chats.list[i].messages.length + " сообщений\r\n\r" + "id пользователя: " + _l_id);
     }
   }
 }
