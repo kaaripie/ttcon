@@ -58,9 +58,9 @@ function download_chat(id, user_name) {
           var date = _l_item.date;
           result += "[" + date.split("T")[0] + ", " + date.split("T")[1] + "] " + _l_item.from + ": " +_l_item.text + "\r\n";
         } 
-
-        var stroka = result;
-        var blob = new Blob([stroka], {type: "text/plain"});
+        
+        // сохранить в файл и автоматически скачать
+        var blob = new Blob([result], {type: "text/plain"});
         var link = document.createElement("a");
         link.setAttribute("href", URL.createObjectURL(blob));
         link.setAttribute("download", "_chat.txt");
