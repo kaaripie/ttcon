@@ -7,7 +7,7 @@ var source = $.getJSON( path, function() { // "/result.json"
     console.log( "gotJSON" );
 })
     .done(function(json) {
-      data = json;
+      return json;
       //console.log( "success" );
     })
     .fail(function() {
@@ -35,7 +35,7 @@ function count_messages(id, user_name) {
   // получить информацию о чате (есть/нет, сколько сообщений, ID чата)
   var _l_name = document.getElementById(user_name).value;
   var _l_id = get_user_id(_l_name);
-
+  
   if ( _l_id ) {
     for ( var i = 0; i < data.chats.list.length; i++ ) {
       if ( data.chats.list[i].id == _l_id ) {
@@ -49,10 +49,10 @@ function download_chat(id, file_path, user_name) {
   // выгрузить все сообщения в консоль
   var _l_path = document.getElementById(file_path).value;
   var _l_name = document.getElementById(user_name).value;
-
-  var _l_id = get_user_id(_l_name);
+ 
+  data = get_data_from_file(_l_path);
+  if (data) var _l_id = get_user_id(_l_name);
   
-
   if ( _l_id ) {
     for ( var i = 0; i < data.chats.list.length; i++ ) {
       var _chat_history = data.chats.list[i];
