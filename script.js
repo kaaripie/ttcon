@@ -1,6 +1,6 @@
 var input_val;
 
-function ad_del(id, user_id) {
+function add_del(id, user_id) {
   var _l_name = document.getElementById(user_id).value;
   // ----------- рабочий парсинг списка контактов ---------------- //
   var source = $.getJSON( "/result.json", function() {
@@ -27,7 +27,7 @@ function ad_del(id, user_id) {
         */
 
         for (var i = 0; i < data.chats.list.length; i++) {
-          if (data.chats.list[i].name == input_val)
+          if (data.chats.list[i].name == _l_name)
             console.log( data.chats.list[i].messages.length );
         }
   });
