@@ -1,10 +1,6 @@
 var input_val;
 
 function ad_del(id, user_id) {
-  input_val = document.getElementById(user_id).value;
-}
-
-function ad_del(id, user_id) {
   var _l_name = document.getElementById(user_id).value;
   // ----------- рабочий парсинг списка контактов ---------------- //
   var source = $.getJSON( "/result.json", function() {
