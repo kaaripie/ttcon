@@ -55,7 +55,7 @@ function download_chat(id, file_path, user_name) {
 }
 
 
-function download_file (chat_id) {
+function download_file (_l_id) {
 
     for ( var i = 0; i < data.chats.list.length; i++ ) {
       var _chat_history = data.chats.list[i];
