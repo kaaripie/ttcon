@@ -1,12 +1,9 @@
   // ----------- парсинг json, результат кладем в объект data ---------------- //
-  let data;
-
-  var source = $.getJSON( "/result.json", function() {
+  var data = $.getJSON( "/result.json", function() {
     console.log( "getJSON" );
   })
-      .done(function(imported) {
+      .done(function() {
         //console.log( "success" );
-        data = imported;
       })
       .fail(function() {
         alert( "error" );
@@ -14,7 +11,7 @@
       .always(function() {
         //console.log( "complete" );
       });
-// ----------
+// -----------------------------------------------------------------------------//
 
 function get_user_id(in_name) {
   //список имен моих контактов
@@ -47,7 +44,7 @@ function download_chat(id, user_name) {
 
   // выгрузить все сообщения в консоль
   if (_l_id)
-  let msgs = chats.list.id[_l_id].messages;
+  var msgs = chats.list.id[_l_id].messages;
 
   for ( var i = 0; i < all_messages.length; i++ ) {
       var _l_item = msgs[i];
