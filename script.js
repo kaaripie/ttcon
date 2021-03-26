@@ -28,7 +28,10 @@ function get_data_from_file(file_src, name) {
 
 function get_user_id(in_name) {
   // получить ID чата по имени пользователя
+  
+  alert(in_name);
   for ( var i = 0; i < data.frequent_contacts.list.length; i++ ) {
+    console.log(data.frequent_contacts.list[i].name);
       if ( data.frequent_contacts.list[i].name == in_name ) {
         return data.frequent_contacts.list[i].id;
       }
