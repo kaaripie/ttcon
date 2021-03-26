@@ -53,7 +53,7 @@ function download_chat(id, user_name) {
         for ( var i = 0; i < _chat_history.messages.length; i++ ) {
           var _l_item = _chat_history.messages[i];
           var date = _l_item.date.replace("T", ", ");
-          console.log ( "[" + date + "]" + _l_item.from + ": " +_l_item.text );
+          console.log ( "[" + date + "] " + _l_item.from + ": " +_l_item.text );
         } 
     }
   }
