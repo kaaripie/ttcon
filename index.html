@@ -25,9 +25,15 @@ var source = $.getJSON( "/result.json", function() {
   
 source.done(function(data) {
       console.log( "done" );
+      /*
+      //список имен фамилий моих контактов
       for (var i = 0; i < data.contacts.list.length; i++) {
-        console.log( data.contacts.list[i].last_name );
+        console.log( data.contacts.list[i].last_name + " " + data.contacts.list[i].last_name );
       }
+      */
+      
+      console.log( data.chats.list["Елена"].messages.length );
+
 });
 </script>
  
