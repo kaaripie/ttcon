@@ -6,28 +6,11 @@ function get_data_from_file(file_src, name) {
   data = JSON.parse(file_src);
   id = get_user_id( name );
   if (id) download_file( id );
- 
- /*
-  var source = $.getJSON( file_src, function() { // "/result.json"
-    console.log( "gotJSON" );
-  })
-    .done(function(json) {
-      data = json;
-      id = get_user_id( name );
-      if (id) download_file( id );
-      //console.log( "success" );
-    })
-    .fail(function() {
-      alert( "error" );
-    })
-    .always(function() {
-      //console.log( "complete" );
-    });*/
 }
 // -----------------------------------------------------------------------------//
 
 function get_user_id(in_name) {
-  // получить ID чата по имени пользователя
+// получить ID чата по имени пользователя
   
   alert(in_name);
   for ( var i = 0; i < data.frequent_contacts.list.length; i++ ) {
