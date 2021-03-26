@@ -22,7 +22,8 @@ function get_id(id, user_name) {
   //список имен моих контактов
   for (var i = 0; i < data.frequent_contacts.list.length; i++) {
     if (_l_name)
-    alert( "ID пользователя: " + data.data.frequent_contacts.list[i].id );
+    alert( "ID пользователя: " + data.frequent_contacts.list[i].id );
+    else alert("нет такого пользователя, скопируй имя из чата")
   }
 }
 
