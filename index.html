@@ -3,47 +3,14 @@
 <head>
   <meta charset="utf-8">
   <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-
+  <script type="text/javascript" src="script.js"></script>
 </head>
 <body>
 
-<input type="text"  id="add_id_user">
-<button onClick='return add_del("add_id", "add_id_user")' type="submit" >submit</button>
+<form id="formIdName">
+    <input type="text"  id="add_id_user">
+    <button type="submit" >submit</button>
+</form>
 
-<script>
-  function ad_del(id, user_id) {
-     var input_val = document.getElementById(user_id).value;
-  }
-
-// ----------- рабочий парсинг списка контактов ---------------- //
-var source = $.getJSON( "/result.json", function() {
-    console.log( "getJSON" );
-  })
-    .done(function() {
-      console.log( "success" );
-    })
-    .fail(function() {
-      alert( "error" );
-    })
-    .always(function() {
-      console.log( "complete" );
-    });
-// ----------
-  
-source.done(function(data) {
-      console.log( "done" );
-      /*
-      //список имен фамилий моих контактов
-      for (var i = 0; i < data.contacts.list.length; i++) {
-        console.log( data.contacts.list[i].last_name + " " + data.contacts.list[i].last_name );
-      }
-      */
-      for (var i = 0; i < data.chats.list.length; i++) {
-        if (data.chats.list[i].name == "Елена")
-          console.log( data.chats.list[i].messages.length );
-      }
-});
-</script>
- 
 </body>
 </html>
