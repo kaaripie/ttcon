@@ -1,44 +1,46 @@
-  // ----------- парсинг json, результат кладем в объект data ---------------- //
-var data;
-var result;
 
-function get_data_from_file(file_src, name) {
-  data = JSON.parse(file_src);
-  id = get_user_id( name );
-  if (id) download_file( id );
-}
-// -----------------------------------------------------------------------------//
+var source, data, result;
 
-function get_user_id(in_name) {
-// получить ID чата по имени пользователя
-  
-  alert(in_name);
-  for ( var i = 0; i < data.frequent_contacts.list.length; i++ ) {
-    console.log(data.frequent_contacts.list[i].name);
-      if ( data.frequent_contacts.list[i].name == in_name ) {
+function check_id() {
+  var _t_isname = document.getElementById('text_result');
+  var _name = document.getElementById('add_fullname').value;
+  // получить ID чата по имени пользователя
+
+  if (data) {
+    for ( var i = 0; i < data.frequent_contacts.list.length; i++ ) {
+      if ( data.frequent_contacts.list[i].name == _name ) {
+        _t_isname.innerHTML = "ID чата: " + data.frequent_contacts.list[i].id + " (можно конвертировать)";
         return data.frequent_contacts.list[i].id;
       }
-  } 
-  alert("нет такого пользователя");
-  return null;
+    } 
+    _t_isname.innerHTML = "Пользователь не найден";
+    return null;
+  } else {
+    _t_isname.innerHTML = "Сначала выбери файл";
+    return null;
+  }
 }
 
-function download_chat() {
-  // выгрузить все сообщения в консоль
+function check_file() {
   var selectedFile = document.getElementById('inputFile').files[0];
-  var user_name = document.getElementById('add_fullname').value;
   var reader = new FileReader();
 
   reader.onload = function (e) {
-    var FileContent = e.target.result;
-    get_data_from_file(FileContent, user_name);
+    source = e.target.result;
+    var _t_isfile = document.getElementById('check_file_result');
+    // парсинг json из файла-источника (source), результат кладем в объект data
+    data = JSON.parse(source);
+  
+    if (data) {
+      _t_isfile.innerHTML = "Файл обработан, формат корректный";
+    } else _t_isfile.innerHTML = "Ошибка обработки файла";
+
   };
 
   reader.readAsText(selectedFile);
 }
 
-
-function download_file (_l_id) {
+function download_file(_l_id) {
 
     for ( var i = 0; i < data.chats.list.length; i++ ) {
       var _chat_history = data.chats.list[i];
@@ -47,18 +49,34 @@ function download_file (_l_id) {
         for ( var i = 0; i < _chat_history.messages.length; i++ ) {
           var _l_item = _chat_history.messages[i];
           var date = _l_item.date;
-          result += "[" + date.split("T")[0] + ", " + date.split("T")[1] + "] " + _l_item.from + ": " +_l_item.text + "\r\n";
+          result += "[" 
+                  + date.split("T")[0]
+                  + ", "
+                  + date.split("T")[1]
+                  + "] "
+                  + _l_item.from 
+                  + ": "
+                  +_l_item.text
+                  + "\r\n";
         } 
         
         // сохранить в файл и автоматически скачать
         var blob = new Blob([result], {type: "text/plain"});
         var link = document.createElement("a");
-        link.setAttribute("href", URL.createObjectURL(blob));
-        link.setAttribute("download", "_chat.txt");
+        link.setAttribute( "href", URL.createObjectURL(blob) );
+        link.setAttribute( "download", "_chat.txt" );
         link.click();
-
-        break;
       }
     }
 }
 
+// ------------- нажатие на кнопку -----------------------------
+function download_chat() {
+  // берем Имя из поля ввода
+  var user_name = document.getElementById('add_fullname').value;
+  // проверяяем, что файл загружен, идем парсить
+  if (source) id = check_id();
+  if (id) download_file( check_id() );
+  else document.getElementById('check_file_result').innertHTML = "нужно выбрать файл";
+}
+// --------------------------------------------------------------
