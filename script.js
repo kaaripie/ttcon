@@ -1,22 +1,26 @@
+var source, data, result; // файл, Json объект, текстовые данные в новом формате
 
-var source, data, result;
+function alert(o_item, s_class, s_message) {
+  o_item.className = s_class;
+  o_item.innerHTML = s_message;
+}
 
 function check_id() {
-  var _t_isname = document.getElementById('text_result');
-  var _name = document.getElementById('add_fullname').value;
+  let _alert_name = document.getElementById('text_result');
+  let _name = document.getElementById('add_fullname').value;
   // получить ID чата по имени пользователя
 
   if (data) {
     for ( var i = 0; i < data.frequent_contacts.list.length; i++ ) {
       if ( data.frequent_contacts.list[i].name == _name ) {
-        _t_isname.innerHTML = "ID чата: " + data.frequent_contacts.list[i].id + " (можно конвертировать)";
+        alert(_alert_name, "text-primary", "ID чата: " + data.frequent_contacts.list[i].id + " (можно конвертировать)");
         return data.frequent_contacts.list[i].id;
       }
     } 
-    _t_isname.innerHTML = "Пользователь не найден";
+    alert(_alert_name, "text-danger", "Пользователь не найден");
     return null;
   } else {
-    _t_isname.innerHTML = "Сначала выбери файл";
+    alert(_alert_name, "text-danger", "Сначала выберите файл");
     return null;
   }
 }
@@ -27,13 +31,15 @@ function check_file() {
 
   reader.onload = function (e) {
     source = e.target.result;
-    var _t_isfile = document.getElementById('check_file_result');
+    let _alert_file = document.getElementById('check_file_result');
     // парсинг json из файла-источника (source), результат кладем в объект data
     data = JSON.parse(source);
   
     if (data) {
-      _t_isfile.innerHTML = "Файл обработан, формат корректный";
-    } else _t_isfile.innerHTML = "Ошибка обработки файла";
+      alert(_alert_file, "text-primary", "Файл обработан, формат корректный");
+    } else {
+      alert(_alert_file, "text-danger", "Ошибка обработки файла");
+    }
 
   };
 
@@ -72,11 +78,14 @@ function download_file(_l_id) {
 
 // ------------- нажатие на кнопку -----------------------------
 function download_chat() {
-  // берем Имя из поля ввода
-  var user_name = document.getElementById('add_fullname').value;
+  let _alert_file = document.getElementById('check_file_result');
   // проверяяем, что файл загружен, идем парсить
-  if (source) id = check_id();
-  if (id) download_file( check_id() );
-  else document.getElementById('check_file_result').innertHTML = "нужно выбрать файл";
+  if (source) {
+    id = check_id();
+    if (id) download_file( check_id() );
+  } else {
+    alert(_alert_file, "text-danger", "Выберите файл");
+
+  }
 }
 // --------------------------------------------------------------
