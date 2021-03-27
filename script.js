@@ -15,7 +15,7 @@ function check_id() {
   if (data) {
     for ( var i = 0; i < data.frequent_contacts.list.length; i++ ) {
       if ( data.frequent_contacts.list[i].name == _name ) {
-        alert(_alert_name, "text-primary", "ID чата: " + data.frequent_contacts.list[i].id + " (можно конвертировать)");
+        alert(_alert_name, "text-primary", "ID чата: " + data.frequent_contacts.list[i].id);
         return data.frequent_contacts.list[i].id;
       }
     } 
@@ -74,6 +74,7 @@ function download_file(_l_id) {
         link.setAttribute( "href", URL.createObjectURL(blob) );
         link.setAttribute( "download", "_chat.txt" );
         link.click();
+        alert(document.getElementById('text_success'), "text-success", "Готово! Файл нужно загрузить на телефон и отправить в приложение Telegram. Оно предложит экспортировать данные из файла в один из твоих диалогов");
       }
     }
 }
@@ -87,6 +88,5 @@ function download_chat() {
     if (id) download_file( check_id() );
   } else {
     alert(_alert_file, "text-danger", "Выбери файл");
-
   }
 }
