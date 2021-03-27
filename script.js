@@ -22,7 +22,7 @@ function check_id() {
     alert(_alert_name, "text-danger", "Пользователь не найден");
     return null;
   } else {
-    alert(_alert_name, "text-danger", "Сначала выберите файл");
+    alert(_alert_name, "text-danger", "Сначала выбери файл");
     return null;
   }
 }
@@ -86,7 +86,7 @@ function download_chat() {
     id = check_id();
     if (id) download_file( check_id() );
   } else {
-    alert(_alert_file, "text-danger", "Выберите файл");
+    alert(_alert_file, "text-danger", "Выбери файл");
 
   }
 }
