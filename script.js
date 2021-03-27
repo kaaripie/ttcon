@@ -76,7 +76,7 @@ function download_file(_l_id) {
     }
 }
 
-// ------------- нажатие на кнопку -----------------------------
+// ------------- нажатие на кнопку Скачать -----------------------------
 function download_chat() {
   let _alert_file = document.getElementById('check_file_result');
   // проверяяем, что файл загружен, идем парсить
