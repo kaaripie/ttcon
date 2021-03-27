@@ -74,7 +74,7 @@ function download_file(_l_id) {
         link.setAttribute( "href", URL.createObjectURL(blob) );
         link.setAttribute( "download", "_chat.txt" );
         link.click();
-        alert(document.getElementById('text_success'), "text-success", "Готово! Файл нужно загрузить на телефон и отправить в приложение Telegram. Оно предложит экспортировать данные из файла в один из твоих диалогов");
+        alert(document.getElementById('text_success'), "text-success", "Готово! Файл нужно загрузить на телефон и отправить в приложение Telegram. Оно предложит добавить данные из файла в один из твоих диалогов");
       }
     }
 }
