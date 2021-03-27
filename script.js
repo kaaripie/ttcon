@@ -1,3 +1,5 @@
+// @kaaripie release 1.0
+
 var source, data, result; // файл, Json объект, текстовые данные в новом формате
 
 function alert(o_item, s_class, s_message) {
