@@ -51,12 +51,12 @@
                     <input type="file" id="inputFile" onchange='check_file()'>
                     <div type="text" id="check_file_result" class="text-danger"></div>
                     <br>
-                    <p>2. Введи имя собеседника, как видишь его в диалоге Telegram</p>
-                    <input  type="input:text" id="add_fullname" class="form-control" 
+                    <p id="text_request_id" style="visibility: hidden">2. Введи имя собеседника, как видишь его в диалоге Telegram</p>
+                    <input type="input:text" id="add_fullname" class="form-control" style="visibility: hidden"
                             placeholder="имя пользователя" aria-describedby="basic-addon2">
-                    <p id="text_result" class="text-danger"></p>
+                    <p id="text_result" class="text-danger" style="visibility: hidden"></p>
                     <br>
-                    <button type="button" class="btn btn-default" onClick='check_id()'>Проверить имя</button>
+                    <button type="button" id="button_request_id" class="btn btn-default" onClick='check_id()' style="visibility: hidden">Проверить имя</button>
                     <br><br>
                     <div class="btn-group" role="group" aria-label="...">
                     <button type="button" class="btn btn-primary mb-2" onClick='download_chat()'>Конвертировать и скачать</button>

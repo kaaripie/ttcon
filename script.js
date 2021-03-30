@@ -1,18 +1,34 @@
 // @kaaripie release 1.0
 
-var source, data, result; // файл, Json объект, текстовые данные в новом формате
+let source, data;
+let result = ""; // файл, Json объект, текстовые данные в новом формате
 
 function alert(o_item, s_class, s_message) {
   o_item.className = s_class;
   o_item.innerHTML = s_message;
 }
 
+function hide_id_forms(hide) {
+  let _do = hide ? 'hidden' : 'visible';
+
+  let _req_text = document.getElementById('text_request_id');
+  let _input_text = document.getElementById('add_fullname');
+  let _idresult_text = document.getElementById('text_result'); 
+  let _id_req_btn = document.getElementById('button_request_id');
+
+  _req_text.style.visibility = _do;
+  _input_text.style.visibility = _do;
+  _idresult_text.style.visibility = _do;
+  _id_req_btn.style.visibility = _do;
+}
+
 function check_id() {
   let _alert_name = document.getElementById('text_result');
   let _name = document.getElementById('add_fullname').value;
   // получить ID чата по имени пользователя
+  let _contact_list = data.frequent_contacts;
 
-  if (data) {
+  if (data && _contact_list) {
     for ( var i = 0; i < data.frequent_contacts.list.length; i++ ) {
       if ( data.frequent_contacts.list[i].name == _name ) {
         alert(_alert_name, "text-primary", "ID чата: " + data.frequent_contacts.list[i].id);
@@ -36,9 +52,15 @@ function check_file() {
     let _alert_file = document.getElementById('check_file_result');
     // парсинг json из файла-источника (source), результат кладем в объект data
     data = JSON.parse(source);
-  
+    
     if (data) {
-      alert(_alert_file, "text-primary", "Файл обработан, формат корректный");
+      if (data.chats) {
+        hide_id_forms(false);
+        alert(_alert_file, "text-primary", "В файле несколько чатов. Выберите, какой конвертировать");
+      } else {
+        hide_id_forms(true);
+        alert(_alert_file, "text-primary", "Файл обработан");
+      }
     } else {
       alert(_alert_file, "text-danger", "Ошибка обработки файла");
     }
@@ -49,7 +71,6 @@ function check_file() {
 }
 
 function download_file(_l_id) {
-
     for ( var i = 0; i < data.chats.list.length; i++ ) {
       var _chat_history = data.chats.list[i];
       if ( _chat_history.id == _l_id && _chat_history.messages.length > 0 ) {
@@ -79,6 +100,30 @@ function download_file(_l_id) {
     }
 }
 
+function download_file_single_chat() {
+  for ( var i = 0; i < data.messages.length; i++) {
+    let _l_item = data.messages[i];
+    let date = _l_item.date;
+    result += "[" 
+            + date.split("T")[0]
+            + ", "
+            + date.split("T")[1]
+            + "] "
+            + _l_item.from 
+            + ": "
+            +_l_item.text
+            + "\r\n";
+  } 
+  
+  // сохранить в файл и автоматически скачать
+  var blob = new Blob([result], {type: "text/plain"});
+  var link = document.createElement("a");
+  link.setAttribute( "href", URL.createObjectURL(blob) );
+  link.setAttribute( "download", "_chat.txt" );
+  link.click();
+  alert(document.getElementById('text_success'), "text-success", "Готово! Файл нужно загрузить на телефон и отправить в приложение Telegram. Оно предложит добавить данные из файла в один из твоих диалогов");
+}
+
 // ------------- нажатие на кнопку Скачать -----------------------------
 function download_chat() {
   let _alert_file = document.getElementById('check_file_result');
@@ -86,6 +131,7 @@ function download_chat() {
   if (source) {
     id = check_id();
     if (id) download_file( check_id() );
+    else download_file_single_chat();
   } else {
     alert(_alert_file, "text-danger", "Выбери файл");
   }
