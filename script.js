@@ -56,7 +56,7 @@ function check_file() {
     if (data) {
       if (data.chats) {
         hide_id_forms(false);
-        alert(_alert_file, "text-primary", "В файле несколько чатов. Выберите, какой конвертировать");
+        alert(_alert_file, "text-primary", "В файле несколько чатов. Выбери, какой конвертировать");
       } else {
         hide_id_forms(true);
         alert(_alert_file, "text-primary", "Файл обработан");

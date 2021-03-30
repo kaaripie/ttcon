@@ -40,31 +40,33 @@
         <p class="lead">Экспортируем чаты из Telegram > преобразуем в формат Watsap > импортируем с телефона в любой Telegram чат (потому что импорта собственных данных в Tg пока нет)
         </p>
         <p> <a href="https://recordit.co/GKXDWoBOpk" target="_blank">Как экспортировать</a> Telegram чаты в JSON формате</p>
-         
-      </div>
+      </div>   
+    </div>
+
     </div><!-- /.container -->
-    <div class="row">
+      <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <div class="thumbnail" style="margin: 0px 10px 30px 10px;">
-                <div class="caption">
-                    <p>Выбери JSON файл, экспортированный из Telegram</p>
-                    <input type="file" id="inputFile" onchange='check_file()'>
-                    <div type="text" id="check_file_result" class="text-danger"></div>
-                    <br>
-                    <p id="text_request_id" style="visibility: hidden">Введи имя собеседника, как видишь его в диалоге Telegram</p>
-                    <input type="input:text" id="add_fullname" class="form-control" style="visibility: hidden"
-                            placeholder="имя пользователя" aria-describedby="basic-addon2">
-                    <p id="text_result" class="text-danger" style="visibility: hidden"></p>
-                    <br>
-                    <button type="button" id="button_request_id" class="btn btn-default" onClick='check_id()' style="visibility: hidden">Проверить имя</button>
-                    <br><br>
-                    <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-primary mb-2" onClick='download_chat()'>Конвертировать и скачать</button>
-                    <br><br>
-                    <p id="text_success" class="text-primary"></p>
-                  </div>
-            </div>
+          <div class="thumbnail" style="margin: 0px 10px 30px 10px;">
+            <div class="caption">
+                <p>Выбери JSON файл, экспортированный из Telegram</p>
+                <input type="file" id="inputFile" onchange='check_file()'>
+                <p type="text" id="check_file_result" class="text-danger"></p>
+                <br>
+                <p id="text_request_id" style="visibility: hidden">Введи имя собеседника, как видишь его в диалоге Telegram</p>
+                <input type="input:text" id="add_fullname" class="form-control" style="visibility: hidden"
+                        placeholder="имя пользователя" aria-describedby="basic-addon2">
+                <p id="text_result" class="text-danger" style="visibility: hidden"></p>
+                <br>
+                <button type="button" id="button_request_id" class="btn btn-default" onClick='check_id()' style="visibility: hidden">Проверить имя</button>
+                <br><br>
+                <div class="btn-group" role="group" aria-label="...">
+                  <button type="button" class="btn btn-primary mb-2" onClick='download_chat()'>Конвертировать и скачать</button>
+                </div> 
+                <p id="text_success" class="text-primary"></p>
+            </div>        
+          </div>
         </div>
+      </div>
     </div>
 
     <!-- Bootstrap core JavaScript
@@ -73,5 +75,6 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>  
+  
   </body>
 </html>
