@@ -93,6 +93,7 @@ function messages_array_to_file(_msgs) {
   
   // сохранить в файл и автоматически скачать
   let _blob = new Blob([_result], { type: "text/plain" });
+  
   let _link = document.createElement("a");
   _link.setAttribute( "href", URL.createObjectURL(_blob) );
   _link.setAttribute( "download", "_chat.txt" );
