@@ -1,34 +1,33 @@
-// @kaaripie
-
-let data, result; // файл, Json объект, текстовые данные в новом формате
+let data; // Json объект, полученный из файла
 
 function alert(o_item, s_class, s_message) {
-  // оформление текста уведомлений
+  // текст и оформление текста уведомлений
   o_item.className = s_class;
   o_item.innerHTML = s_message;
 }
 
 function hide_id_forms(hide) {
-  // показать-скрыть блок выбора пользователя при экспорте из множества чатов
-  let _do = hide ? 'hidden' : 'visible';
+  // показать выбор пользователя, если из файла извлечено несколько чатов
+  let _state = hide ? 'hidden' : 'visible';
 
   let _req_text = document.getElementById('text_request_id');
   let _input_text = document.getElementById('add_fullname');
   let _idresult_text = document.getElementById('text_result'); 
   let _id_req_btn = document.getElementById('button_request_id');
 
-  _req_text.style.visibility = _do;
-  _input_text.style.visibility = _do;
-  _idresult_text.style.visibility = _do;
-  _id_req_btn.style.visibility = _do;
+  _req_text.style.visibility = _state;
+  _input_text.style.visibility = _state;
+  _idresult_text.style.visibility = _state;
+  _id_req_btn.style.visibility = _state;
 }
 
 function check_id() {
   // поиск идентификатора пользователя по его имени. для множества чатов
   // вернет ID пользователя или null, сообщит об ошибке в имени
+  // -------------- вызывается при нажатии на кнопку Проверить пользователя -----------------
+
   let _alert_name = document.getElementById('text_result');
   let _name = document.getElementById('add_fullname').value;
-  // получить ID чата по имени пользователя
   let _contact_list = data.frequent_contacts;
 
   if (data && _contact_list) {
@@ -47,9 +46,9 @@ function check_id() {
 }
 
 function check_file() {
-  // проверка наличия и типа данных в загруженном файле
-  // определит, 1 чат или несколько, покажет/скроет форму ввода имени пользователя
-  // заполнит переменную data извлеченными из файла данными
+  // извлекает данные из загруженного файла
+  // определит, 1 чат или несколько и покажет/скроет форму ввода имени пользователя
+  // заполнит глобальную переменную data извлеченными из файла данными
   let _selectedFile = document.getElementById('inputFile').files[0];
   let _reader = new FileReader();
 
@@ -57,7 +56,7 @@ function check_file() {
     let _source = e.target.result;
     let _alert_file = document.getElementById('check_file_result');
 
-    // парсинг json из файла-источника (_source), результат кладем в глобальный объект data
+    // парсинг json из файла-источника (_source), результат кладем в глобальную переменную data
     data = JSON.parse(_source);
     
     if (data) {
@@ -71,39 +70,38 @@ function check_file() {
     } else {
       alert(_alert_file, "text-danger", "Ошибка обработки файла");
     }
-
   };
 
   _reader.readAsText(_selectedFile);
 }
 
 function messages_array_to_file(_msgs) {
-  // распарсит полученную из конкретного чата переписку и сохранит её в txt
-  result = "";
+  // преобразует полученный массив сообщений и сохранит его в txt
+  let _result = "";
+
   for ( let i = 0; i < _msgs.length; i++ ) {
     let _item = _msgs[i];
-    let _date = _item.date;
-    result += "[" 
-            + _date.split("T")[0]
-            + ", "
-            + _date.split("T")[1]
+
+    _result += "[" 
+            + _item.date.replace("T", ", ")
             + "] "
             + _item.from 
             + ": "
-            +_item.text
+            + _item.text
             + "\r\n";
   } 
   
   // сохранить в файл и автоматически скачать
-  let _blob = new Blob([result], { type: "text/plain" });
+  let _blob = new Blob([_result], { type: "text/plain" });
   let _link = document.createElement("a");
   _link.setAttribute( "href", URL.createObjectURL(_blob) );
   _link.setAttribute( "download", "_chat.txt" );
   _link.click();
+
   alert(document.getElementById('text_success'), "text-success", "Готово! Файл нужно загрузить на телефон и отправить в приложение Telegram. Оно предложит добавить данные из файла в один из твоих диалогов");  
 }
 
-// ------------- нажатие на кнопку Скачать -----------------------------
+// ------------- вызывается при нажатии на кнопку Скачать -----------------------------
 function download_chat() {
   let _alert_file = document.getElementById('check_file_result');
   // проверяяем, что файл загружен, идем парсить
@@ -117,6 +115,7 @@ function download_chat() {
             }
           }
     } else {
+      // если чат только один, сохранит его в файл
       messages_array_to_file( data.messages );
     }
   } else {
