@@ -70,13 +70,10 @@ function check_file() {
   reader.readAsText(selectedFile);
 }
 
-function download_file(_l_id) {
-    for ( var i = 0; i < data.chats.list.length; i++ ) {
-      var _chat_history = data.chats.list[i];
-      if ( _chat_history.id == _l_id && _chat_history.messages.length > 0 ) {
-        result = "";
-        for ( var i = 0; i < _chat_history.messages.length; i++ ) {
-          var _l_item = _chat_history.messages[i];
+function messages_array_to_file(_msgs) {
+  result = "";
+        for ( var i = 0; i < _msgs.length; i++ ) {
+          var _l_item = _msgs[i];
           var date = _l_item.date;
           result += "[" 
                   + date.split("T")[0]
@@ -96,32 +93,20 @@ function download_file(_l_id) {
         link.setAttribute( "download", "_chat.txt" );
         link.click();
         alert(document.getElementById('text_success'), "text-success", "Готово! Файл нужно загрузить на телефон и отправить в приложение Telegram. Оно предложит добавить данные из файла в один из твоих диалогов");
+      
+}
+
+function download_file(_l_id) {
+    for ( var i = 0; i < data.chats.list.length; i++ ) {
+      if ( data.chats.list[i].id == _l_id ) {
+        messages_array_to_file(data.chats.list[i].messages);
+        break;
       }
     }
 }
 
 function download_file_single_chat() {
-  for ( var i = 0; i < data.messages.length; i++) {
-    let _l_item = data.messages[i];
-    let date = _l_item.date;
-    result += "[" 
-            + date.split("T")[0]
-            + ", "
-            + date.split("T")[1]
-            + "] "
-            + _l_item.from 
-            + ": "
-            +_l_item.text
-            + "\r\n";
-  } 
-  
-  // сохранить в файл и автоматически скачать
-  var blob = new Blob([result], {type: "text/plain"});
-  var link = document.createElement("a");
-  link.setAttribute( "href", URL.createObjectURL(blob) );
-  link.setAttribute( "download", "_chat.txt" );
-  link.click();
-  alert(document.getElementById('text_success'), "text-success", "Готово! Файл нужно загрузить на телефон и отправить в приложение Telegram. Оно предложит добавить данные из файла в один из твоих диалогов");
+  messages_array_to_file(data.messages);
 }
 
 // ------------- нажатие на кнопку Скачать -----------------------------
