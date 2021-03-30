@@ -81,13 +81,56 @@ function messages_array_to_file(_msgs) {
 
   for ( let i = 0; i < _msgs.length; i++ ) {
     let _item = _msgs[i];
+    let _l_text = "";
+    let _l_actor = "???";
+
+    _item.from ? _l_actor = _item.from : _l_actor = _item.actor;
+
+    if (_item.sticker_emoji) {
+      _l_text = _item.sticker_emoji;
+    } 
+    else if (_item.file) {
+      _l_text = _item.file.split("/")[1] + " <прикреплено: " + _item.file.split("/")[1] + ">";
+    } 
+    else if (_item.photo) {
+      _l_text = "<прикреплено: " + _item.photo.split("/")[1] + ">";
+    } 
+    else if (_item.action == "phone_call") {
+      if (_item.duration_seconds) {
+        _l_text = "Аудиозвонок (" + _item.duration_seconds + " сек)";
+      } else {
+        _l_text = "Пропущенный аудиозвонок";
+      }
+    }
+    else if (_item.text) {
+      if (Array.isArray(_item.text)) {
+        let _l_string = "";
+
+        for ( let i = 0; i < _item.text.length; i++ ) {
+          var _type = typeof _item.text[i];
+          if (_type == "string") {
+            _l_string += _item.text[i];
+          } 
+          else {
+            _l_string += _item.text[i].text;
+          }
+        } 
+        _l_text = _l_string;
+      } 
+      else {
+        _l_text = _item.text;
+      };
+    } 
+    else {
+      console.log("ошибка обработки сообщения: " + JSON.stringify(_item));
+    }
 
     _result += "[" 
             + _item.date.replace("T", ", ")
             + "] "
-            + _item.from 
+            + _l_actor 
             + ": "
-            + _item.text
+            + _l_text
             + "\r\n";
   } 
   
