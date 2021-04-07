@@ -5,6 +5,7 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+  margin: 0px 10px 30px 10px;
   }
   .starter-template {
 	padding: 25px 15px;

@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
     
     <!-- Custom styles for this template -->
-    <link href="starter-template.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 
     <!-- Yandex.Metrika counter считает посещения -->
     <script type="text/javascript" >
@@ -52,15 +52,15 @@
     <div class="container">
       <div class="starter-template">
         <h1>Конвертер Telegram чатов в формат Watsap</h1>
-        <p>Экспортируем чаты из Telegram > преобразуем в формат Watsap > импортируем с телефона в любой Telegram чат<br>(потому что экспорт чатов из Telegram есть, а импорта пока нет)</p>
-        <br>
+        <p>Дает возможность загрузить свои чаты, экспортированные из Telegram, обратно в Telegram. Например, переместить их между аккаунтами.
+           Для импорта чаты преобразуются в формат Watsap, т.к. импорт из этого приложения в Telegram есть, а из других – нет</p>
         <p type="text" class="text-info">🛈 Обработка чатов производится твоим браузером без передачи файлов хостеру, поэтому данные в безопасности</p>
       </div>   
     </div>
     </div><!-- /.container -->
       <div class="row">
         <div class="col-md-6 col-md-offset-3">
-          <div class="thumbnail" style="margin: 0px 10px 30px 10px;">
+          <div class="thumbnail">
             <div class="caption">
                 <p>Выбери JSON файл, экспортированный из Telegram</p>
                 <input type="file" id="inputFile" onchange='check_file()'>
@@ -79,6 +79,10 @@
                 <p id="text_success" class="text-primary"></p>
             </div>        
           </div>
+          <p><strong>Как это работает:</strong></p>
+          <p>1. Экспортируй один или несколько чатов из Telegram </p>
+          <p>2. Преобразуй чаты в формат Watsap с помощью этого сайта</p>
+          <p>3. Импортируй полученные файлы обратно в Telegram с помощью мобильной версии приложения (не работает на ПК)</p>
         </div>
       </div>
     </div>
