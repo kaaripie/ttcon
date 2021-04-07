@@ -39,6 +39,8 @@ function check_id() {
     } 
     alert(_alert_name, "text-danger", "Пользователь не найден");
     return null;
+  } else if (data && !_contact_list) {
+    return null;
   } else {
     alert(_alert_name, "text-danger", "Сначала выбери файл");
     return null;
@@ -79,70 +81,75 @@ function messages_array_to_file(_msgs) {
   // преобразует полученный массив сообщений и сохранит его в txt
   let _result = "";
 
-  for ( let i = 0; i < _msgs.length; i++ ) {
-    let _item = _msgs[i];
-    let _l_text = "";
-    let _l_actor = "???";
+  if (_msgs) {
+    for ( let i = 0; i < _msgs.length; i++ ) {
+      let _item = _msgs[i];
+      let _l_text = "";
+      let _l_actor = "???";
 
-    _item.from ? _l_actor = _item.from : _l_actor = _item.actor;
+      _item.from ? _l_actor = _item.from : _l_actor = _item.actor;
 
-    if (_item.sticker_emoji) {
-      _l_text = _item.sticker_emoji;
-    } 
-    else if (_item.file) {
-      _l_text = _item.file.split("/")[1] + " <прикреплено: " + _item.file.split("/")[1] + ">";
-    } 
-    else if (_item.photo) {
-      _l_text = "<прикреплено: " + _item.photo.split("/")[1] + ">";
-    } 
-    else if (_item.action == "phone_call") {
-      if (_item.duration_seconds) {
-        _l_text = "Аудиозвонок (" + _item.duration_seconds + " сек)";
-      } else {
-        _l_text = "Пропущенный аудиозвонок";
+      if (_item.sticker_emoji) {
+        _l_text = _item.sticker_emoji;
+      } 
+      else if (_item.file) {
+        _l_text = _item.file.split("/")[1] + " <прикреплено: " + _item.file.split("/")[1] + ">";
+      } 
+      else if (_item.photo) {
+        _l_text = "<прикреплено: " + _item.photo.split("/")[1] + ">";
+      } 
+      else if (_item.action == "phone_call") {
+        if (_item.duration_seconds) {
+          _l_text = "Аудиозвонок (" + _item.duration_seconds + " сек)";
+        } else {
+          _l_text = "Пропущенный аудиозвонок";
+        }
       }
-    }
-    else if (_item.text) {
-      if (Array.isArray(_item.text)) {
-        let _l_string = "";
+      else if (_item.text) {
+        if (Array.isArray(_item.text)) {
+          let _l_string = "";
 
-        for ( let i = 0; i < _item.text.length; i++ ) {
-          var _type = typeof _item.text[i];
-          if (_type == "string") {
-            _l_string += _item.text[i];
+          for ( let i = 0; i < _item.text.length; i++ ) {
+            var _type = typeof _item.text[i];
+            if (_type == "string") {
+              _l_string += _item.text[i];
+            } 
+            else {
+              _l_string += _item.text[i].text;
+            }
           } 
-          else {
-            _l_string += _item.text[i].text;
-          }
+          _l_text = _l_string;
         } 
-        _l_text = _l_string;
+        else {
+          _l_text = _item.text;
+        };
       } 
       else {
-        _l_text = _item.text;
-      };
+        console.log("ошибка обработки сообщения: " + JSON.stringify(_item));
+      }
+
+      _result += "[" 
+              + _item.date.replace("T", ", ")
+              + "] "
+              + _l_actor 
+              + ": "
+              + _l_text
+              + "\r\n";
     } 
-    else {
-      console.log("ошибка обработки сообщения: " + JSON.stringify(_item));
-    }
+    
+    // сохранить в файл и автоматически скачать
+    let _blob = new Blob([_result], { type: "text/plain" });
+    
+    let _link = document.createElement("a");
+    _link.setAttribute( "href", URL.createObjectURL(_blob) );
+    _link.setAttribute( "download", "_chat.txt" );
+    _link.click();
 
-    _result += "[" 
-            + _item.date.replace("T", ", ")
-            + "] "
-            + _l_actor 
-            + ": "
-            + _l_text
-            + "\r\n";
-  } 
-  
-  // сохранить в файл и автоматически скачать
-  let _blob = new Blob([_result], { type: "text/plain" });
-  
-  let _link = document.createElement("a");
-  _link.setAttribute( "href", URL.createObjectURL(_blob) );
-  _link.setAttribute( "download", "_chat.txt" );
-  _link.click();
-
-  alert(document.getElementById('text_success'), "text-success", "Готово! Файл нужно загрузить на телефон и отправить в приложение Telegram. Оно предложит добавить данные из файла в один из твоих диалогов");  
+    alert(document.getElementById('text_success'), "text-success", "Готово! Файл нужно загрузить на телефон и отправить в приложение Telegram. Оно предложит добавить данные из файла в один из твоих диалогов"); 
+  }
+  else {
+    alert(document.getElementById('text_success'), "text-danger", "Нет данных для скачивания. Проверь имя пользователя"); 
+  }
 }
 
 // ------------- вызывается при нажатии на кнопку Скачать -----------------------------
