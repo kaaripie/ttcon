@@ -40,6 +40,7 @@ function check_id() {
     alert(_alert_name, "text-danger", "Пользователь не найден");
     return null;
   } else if (data && !_contact_list) {
+    console.log("в файле только один чат (не удалось извлечь список контактов)");
     return null;
   } else {
     alert(_alert_name, "text-danger", "Сначала выбери файл");
