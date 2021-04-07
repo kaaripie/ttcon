@@ -8,17 +8,17 @@ function alert(o_item, s_class, s_message) {
 
 function hide_id_forms(hide) {
   // показать выбор пользователя, если из файла извлечено несколько чатов
-  let _state = hide ? 'hidden' : 'visible';
+  let _set_state = hide ? 'hidden' : 'visible'; // true or false
 
   let _req_text = document.getElementById('text_request_id');
   let _input_text = document.getElementById('add_fullname');
   let _idresult_text = document.getElementById('text_result'); 
   let _id_req_btn = document.getElementById('button_request_id');
 
-  _req_text.style.visibility = _state;
-  _input_text.style.visibility = _state;
-  _idresult_text.style.visibility = _state;
-  _id_req_btn.style.visibility = _state;
+  _req_text.style.visibility = _set_state;
+  _input_text.style.visibility = _set_state;
+  _idresult_text.style.visibility = _set_state;
+  _id_req_btn.style.visibility = _set_state;
 }
 
 function check_id() {
